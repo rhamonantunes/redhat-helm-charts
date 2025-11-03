@@ -45,7 +45,7 @@ build:
 
   source:
     namespace: openshift
-    name: nodejs:12
+    name: nodejs:22-ubi9
 
 ## Application/Deployment-specific values (For configuring Deployment, Service, Route, ConfigMap, etc)
 deploy:
