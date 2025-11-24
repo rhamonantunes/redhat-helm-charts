@@ -1,8 +1,5 @@
 image:
-  ## Name of the image you want to build/deploy
-  ## Defaults to the release name
-  name:
-  ## Tag that you want to build/deploy
+  repository: image-registry.openshift-image-registry.svc:5000/nodejs/nodejs
   tag: 1.1.1
 ## Build-specific values (for configuring BuildConfig and ImageStream)
 build:
