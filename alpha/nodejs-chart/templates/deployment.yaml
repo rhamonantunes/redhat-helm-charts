@@ -4,19 +4,6 @@ metadata:
   name: {{ include "nodejs.name" . }}
   labels:
     {{- include "nodejs.labels" . | nindent 4 }}
-{{- if and .Values.build.enabled (eq .Values.build.output.kind "ImageStreamTag") }}
-  annotations:
-    image.openshift.io/triggers: |-
-      [
-        {
-          "from":{
-            "kind":"ImageStreamTag",
-            "name":"{{ include "nodejs.imageName" . }}"
-          },
-          "fieldPath":"spec.template.spec.containers[0].image"
-        }
-      ]
-{{- end }}
 spec:
   replicas: {{ .Values.deploy.replicas }}
   selector:
@@ -33,7 +20,7 @@ spec:
 {{- end }}
       containers:
         - name: web
-          image: {{ include "nodejs.imageName" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
 {{- range .Values.deploy.ports }}
             - name: {{ .name }}
