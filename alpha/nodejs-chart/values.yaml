@@ -3,19 +3,16 @@ image:
   ## Defaults to the release name
   name:
   ## Tag that you want to build/deploy
-  tag: latest
-
+  tag: 1.1.1
 ## Build-specific values (for configuring BuildConfig and ImageStream)
 build:
   ## Should build-related resources such as BuildConfig and ImageStream be created?
   ## Set this to false if you just want to deploy a previously built image.
   enabled: true
-
   ## Git URI, Ref, and ContextDir
   uri: https://github.com/nodeshift-starters/nodejs-rest-http
   ref: main
   contextDir:
-
   ## Specifies where the image will be pushed to once built
   ## More information: https://docs.openshift.com/container-platform/4.6/builds/managing-build-output.html
   output:
@@ -25,10 +22,8 @@ build:
     kind: ImageStreamTag
     ## Push secret name, used only if kind == "DockerImage"
     pushSecret:
-
   ## Image pull secret. More information: https://docs.openshift.com/container-platform/4.6/openshift_images/managing_images/using-image-pull-secrets.html
   pullSecret:
-
   ## Freeform env for the OCP build. More information: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
   env:
   #  - name: VAR_NAME
@@ -42,16 +37,13 @@ build:
   #  requests:
   #    cpu: "2"
   #    memory: 4Gi
-
   source:
     namespace: nodejs
     name: nodejs:latest
-
 ## Application/Deployment-specific values (For configuring Deployment, Service, Route, ConfigMap, etc)
 deploy:
   ## Number of pod replicas to deploy
   replicas: 1
-
   ## Freeform resources for Node. More information: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
   resources:
   #  limits:
@@ -63,14 +55,12 @@ deploy:
 
   ## Type of service to create. More information: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   serviceType: ClusterIP
-
   ## Freeform service ports. More information: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
   ports:
     - name: http
       port: 8080
       targetPort: 8080
       protocol: TCP
-
   ## For creating a Route, allowing your application to be accessed from outside the OCP cluster
   route:
     enabled: true
@@ -85,7 +75,6 @@ deploy:
       caCertificate:
       certificate:
       destinationCACertificate:
-
   ## Freeform Liveness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
   livenessProbe:
     tcpSocket:
@@ -120,7 +109,6 @@ deploy:
     ## Application properties file contents
     properties: |-
       ## Properties go here
-
   ## Freeform volume mounts. More information: https://kubernetes.io/docs/concepts/storage/volumes/
   volumeMounts:
   #  - name: my-config
@@ -143,7 +131,6 @@ deploy:
   #  - name: my-extra-container
   #    command: ["sleep", "infinity"]
   #    image: registry.redhat.io/ubi8/ubi-minimal
-
 global:
   ## Override the release name
   nameOverride:
