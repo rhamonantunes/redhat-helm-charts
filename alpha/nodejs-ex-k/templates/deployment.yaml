@@ -1,23 +1,11 @@
-kind: DeploymentConfig
-apiVersion: apps.openshift.io/v1
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: "nodejs-example"
   annotations:
     description: Defines how to deploy the application server
     template.alpha.openshift.io/wait-for-ready: 'true'
 spec:
-  strategy:
-    type: Rolling
-  triggers:
-  - type: ImageChange
-    imageChangeParams:
-      automatic: true
-      containerNames:
-      - nodejs-example
-      from:
-        kind: ImageStreamTag
-        name: "nodejs-example:latest"
-  - type: ConfigChange
   replicas: 1
   selector:
     name: "nodejs-example"
@@ -29,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nodejs-example
-        image: " "
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: 8080
         readinessProbe:
