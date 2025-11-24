@@ -46,3 +46,8 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/nodejs/nodejs
+  tag: latest
