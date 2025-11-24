@@ -40,4 +40,4 @@ tolerations: []
 affinity: {}
 image:
   repository: image-registry.openshift-image-registry.svc:5000/nodejs/nodejs
-  tag: 1.0.0
+  tag: 1.1.1
